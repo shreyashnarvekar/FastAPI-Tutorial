@@ -3,3 +3,6 @@ sqlalchemy[asyncio]
 asyncpg
 python-dotenv
 black
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
