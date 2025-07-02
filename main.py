@@ -43,7 +43,9 @@ async def create_note(note_data:NoteCreateModel):
 
 @app.get('/note/{note_id}')
 async def get_note_by_id(note_id):
-    pass
+    note = await db.get_by_id(session, note_id)
+    
+    return note 
 
 
 @app.patch('/note/{note_id}')
