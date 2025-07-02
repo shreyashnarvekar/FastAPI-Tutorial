@@ -51,3 +51,4 @@ class CRUD:
             await session.delete(note)
             await session.commit()
     
+        return {}

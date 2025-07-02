@@ -59,6 +59,10 @@ async def update_note(note_id:str, data:NoteCreateModel):
     
 
 
-@app.delete('/note/{note_id}')
+@app.delete('/note/{note_id}', status_code=HTTPStatus.NO_CONTENT)
 async def delete_note(note_id):
-    pass
+    note = await db.get_by_id(session, note_id)
+    
+    result = await db.delete(session, note)
+    
+    return result
