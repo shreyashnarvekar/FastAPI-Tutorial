@@ -2,3 +2,4 @@ fastapi
 sqlalchemy[asyncio] 
 asyncpg
 python-dotenv
+black
