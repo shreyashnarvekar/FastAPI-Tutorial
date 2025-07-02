@@ -17,6 +17,8 @@ class CRUD:
         async with async_session() as session:
             session.add(note)
             await session.commit()
+        
+        return note
     
           
     async def get_by_id(self, async_session:async_sessionmaker[AsyncSession], note_id:str):
@@ -40,8 +42,8 @@ class CRUD:
             return note
 
 
-    async def add(self, async_session:async_sessionmaker[AsyncSession], note:Note):
+    async def delete(self, async_session:async_sessionmaker[AsyncSession], note:Note):
         async with async_session() as session:
-            session.delete(note)
+            await session.delete(note)
             await session.commit()
     

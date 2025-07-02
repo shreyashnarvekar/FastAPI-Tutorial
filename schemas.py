@@ -18,5 +18,11 @@ class NoteCreateModel(BaseModel):
     content : str
     
     model_config = ConfigDict(
-        from_attributes = True
+        from_attributes = True,
+        json_schema_extra={
+            "example":{
+                "title": "Sample title",
+                "content":"Sample content"
+            }
+        }
     )
