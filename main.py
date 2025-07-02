@@ -2,9 +2,11 @@ from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import async_sessionmaker
 from crud import CRUD
 from db import engine
-from schemas import NoteModel
+from schemas import NoteModel, NoteCreateModel
 from typing import List
-
+from models import Note
+import uuid
+from http import HTTPStatus
 
 
 app = FastAPI(
@@ -27,10 +29,17 @@ async def get_all_notes():
     return notes
 
 
-@app.post('/notes')
-async def create_note():
-    pass
+@app.post('/notes', status_code=HTTPStatus.CREATED)
+async def create_note(note_data:NoteCreateModel):
+    new_note = Note(
+        id = str(uuid.uuid4()),
+        title = note_data.title,
+        content = note_data.content
+    )
+    
+    note = await db.add(session, new_note)
 
+    return note
 
 @app.get('/note/{note_id}')
 async def get_note_by_id(note_id):

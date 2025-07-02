@@ -11,3 +11,12 @@ class NoteModel(BaseModel):
     model_config = ConfigDict(
         from_attributes = True
     )
+    
+
+class NoteCreateModel(BaseModel):
+    title : str
+    content : str
+    
+    model_config = ConfigDict(
+        from_attributes = True
+    )
