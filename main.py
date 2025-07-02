@@ -49,8 +49,14 @@ async def get_note_by_id(note_id):
 
 
 @app.patch('/note/{note_id}')
-async def update_note(note_id):
-    pass
+async def update_note(note_id:str, data:NoteCreateModel):
+    note = await db.update(session, note_id, data={
+        'title':data.title,
+        'content':data.content
+    })
+    
+    return note
+    
 
 
 @app.delete('/note/{note_id}')
